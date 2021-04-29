@@ -1,0 +1,14 @@
+{
+	"name": "TouhouThemeDB",
+	"author": "Nmlgc",
+	"url": "https://github.com/thpatch/TouhouThemeDB",
+	"type": "other",
+	"license-name": "Unlicense",
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
+	},
+	"AutoloadNamespaces": {
+		"TouhouThemeDB\\": "includes/"
+	},
+	"manifest_version": 2
+}
