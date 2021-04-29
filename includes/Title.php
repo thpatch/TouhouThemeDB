@@ -2,7 +2,10 @@
 
 namespace TouhouThemeDB;
 
+use MessageGroups;
+
 class Title {
+	protected const GROUP_ID = 'themedb';
 	protected const REDIRECTS = array(
 		"mcd_01_04" => "th06_07",
 		"mcd_01_05" => "th01_05",
@@ -175,4 +178,28 @@ class Title {
 		"th17_18" => "th10_18",
 		"th18_18" => "th10_18",
 	);
+
+	/**
+	 * Looks up the translation for the theme with the given ID in the given language. Follows the
+	 * same-name `self::REDIRECTS`, does not follow any #REDIRECTs on the translation page.
+	 */
+	public static function lookup( string $id, string $lang ): ?string {
+		static $group = null;
+		$group ??= MessageGroups::getGroup( self::GROUP_ID );
+
+		// Per-language message collection cache.
+		static $collections = array();
+
+		if ( isset( self::REDIRECTS[$id] ) ) {
+			$id = self::REDIRECTS[$id];
+		}
+
+		if ( $lang == 'ja' ) {
+			return $group->getMessage( $id, $lang );
+		} else if ( !isset( $collections[$lang] ) ) {
+			$collections[$lang] = $group->initCollection( $lang );
+			$collections[$lang]->loadTranslations();
+		}
+		return $collections[$lang][$id]->translation();
+	}
 };
