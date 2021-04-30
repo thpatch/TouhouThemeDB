@@ -1,0 +1,12 @@
+BASIC:
+	namespace: 1202
+	id: themedb
+	label: Theme Database
+	description: Theme Database, yay
+	class: FileBasedMessageGroup
+	sourcelanguage: ja
+	
+FILES:
+	class: JsonFFS
+	sourcePattern: %GROUPROOT%/themedb-%CODE%.json
+	targetPattern: %GROUPROOT%/themedb-%CODE%.json

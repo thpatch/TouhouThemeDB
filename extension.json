@@ -5,10 +5,31 @@
 	"type": "other",
 	"license-name": "Unlicense",
 	"requires": {
-		"MediaWiki": ">= 1.35.0"
+		"MediaWiki": ">= 1.35.0",
+		"extensions": {
+			"Translate": "*"
+		}
 	},
 	"AutoloadNamespaces": {
 		"TouhouThemeDB\\": "includes/"
 	},
+	"namespaces": [
+		{
+			"id": 1202,
+			"constant": "NS_THEMEDB",
+			"name": "tdb",
+			"subpages": true,
+			"capitallinkoverride": false
+		},
+		{
+			"id": 1203,
+			"constant": "NS_THEMEDB_TALK",
+			"name": "tdb_talk",
+			"subpages": true,
+			"capitallinkoverride": false,
+			"protection": "translate"
+		}
+	],
+	"callback": "TouhouThemeDB\\Hooks::onRegistration",
 	"manifest_version": 2
 }
