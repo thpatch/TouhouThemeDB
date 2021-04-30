@@ -159,4 +159,28 @@ class Relation {
 		"mcd_07_08" => [ 'a', ["th123_10"], ],
 		"mcd_07_10" => [ 'a', ["th13_06"], ],
 	];
+
+	protected static function throwIfEmptyID( string &$id ) {
+		if ( $id === '' ) {
+			throw new \InvalidArgumentException( "Parameter 1 must not be empty" );
+		}
+	}
+
+	public static function relation( string $id ): string {
+		self::throwIfEmptyID( $id );
+		$relation = self::DATA[$id] ?? null;
+		return ( $relation ? $relation[0] : '' );
+	}
+
+	public static function sourcecount( string $id ): int {
+		self::throwIfEmptyID( $id );
+		$relation = self::DATA[$id] ?? null;
+		return ( $relation ? count( $relation[1] ) : 0 );
+	}
+
+	public static function source( string $id, int $num ): string {
+		self::throwIfEmptyID( $id );
+		// No error check here! The user should have called `sourcecount( $id )` before.
+		return self::DATA[$id][1][$num];
+	}
 };

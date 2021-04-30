@@ -22,7 +22,13 @@ class Hooks {
 		);
 	 }
 
-	public static function onTDB( Parser $parser, $param1 ) {
+	public static function onTDB( Parser $parser, $param1, $param2 = '', $param3 = '' ) {
+		switch ( $param1 ) {
+			case 'relation':   	return Relation::relation( $param2 );
+			case 'sourcecount':	return Relation::sourcecount( $param2 );
+			case 'source':     	return Relation::source( $param2, intval( $param3 ) );
+		}
+
 		$components = explode ( '/', $param1 );
 		if ( count($components) == 2 ) {
 			return ( Title::lookup( $components[0], $components[1] ) ?? null );
