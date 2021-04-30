@@ -3,7 +3,7 @@
 namespace TouhouThemeDB;
 
 class Relation {
-	protected const DATA = [
+	public const DATA = [
 		"th04_29" => [ 'a', ["th04_04"], ],
 		"th04_30" => [ 'a', ["th04_15"], ],
 		"th06_01" => [ 'a', ["th_main"], ],
@@ -182,5 +182,28 @@ class Relation {
 		self::throwIfEmptyID( $id );
 		// No error check here! The user should have called `sourcecount( $id )` before.
 		return self::DATA[$id][1][$num];
+	}
+
+	/**
+	 * @return array [ <number of arrangements>, <number of duplicates> ]
+	 */
+	public static function countByType(): array {
+		static $ret = null;
+		$ret ??= array_reduce( self::DATA, function( array $carry, $item ) {
+			switch( $item[0] ) {
+				case "a": return [ ( $carry[0] + 1 ), $carry[1] ];
+				case "d": return [ $carry[0], ( $carry[1] + 1 ) ];
+			}
+			throw new \DomainException( "Invalid relation type for $item" );
+		}, [ 0, 0 ]);
+		return $ret;
+	}
+
+	public static function countOfArrangements(): int {
+		return self::countByType()[0];
+	}
+
+	public static function countOfDuplicates(): int {
+		return self::countByType()[1];
 	}
 };

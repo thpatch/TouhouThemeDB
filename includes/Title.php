@@ -6,7 +6,7 @@ use MessageGroup, MessageGroups;
 
 class Title {
 	protected const GROUP_ID = 'themedb';
-	protected const REDIRECTS = array(
+	public const REDIRECTS = array(
 		"mcd_01_04" => "th06_07",
 		"mcd_01_05" => "th01_05",
 		"mcd_01_09" => "tmgc_01",

@@ -27,6 +27,7 @@ class Hooks {
 			case 'relation':   	return Relation::relation( $param2 );
 			case 'sourcecount':	return Relation::sourcecount( $param2 );
 			case 'source':     	return Relation::source( $param2, intval( $param3 ) );
+			case 'counts':     	return Count::counts( $param2 );
 		}
 
 		$components = explode ( '/', $param1 );
