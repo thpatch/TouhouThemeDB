@@ -2,7 +2,7 @@
 
 namespace TouhouThemeDB;
 
-use MessageGroups;
+use MessageGroup, MessageGroups;
 
 class Title {
 	protected const GROUP_ID = 'themedb';
@@ -179,13 +179,17 @@ class Title {
 		"th18_18" => "th10_18",
 	);
 
+	public static function getGroup(): MessageGroup {
+		static $group = null;
+		return ( $group ??= MessageGroups::getGroup( self::GROUP_ID ) );
+	}
+
 	/**
 	 * Looks up the translation for the theme with the given ID in the given language. Follows the
 	 * same-name `self::REDIRECTS`, does not follow any #REDIRECTs on the translation page.
 	 */
 	public static function lookup( string $id, string $lang ): ?string {
-		static $group = null;
-		$group ??= MessageGroups::getGroup( self::GROUP_ID );
+		$group = self::getGroup();
 
 		// Per-language message collection cache.
 		static $collections = array();
