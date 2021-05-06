@@ -32,7 +32,10 @@ class Hooks {
 
 		$components = explode ( '/', $param1 );
 		if ( count($components) == 2 ) {
-			return ( Title::lookup( $components[0], $components[1] ) ?? null );
+			$ret = Title::lookup( $components[0], $components[1] )
+			if ( $ret !== null ) {
+				return $ret;
+			}
 		}
 		return [ 'found' => false ];
 	}

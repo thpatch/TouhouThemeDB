@@ -187,6 +187,8 @@ class Title {
 	/**
 	 * Looks up the translation for the theme with the given ID in the given language. Follows the
 	 * same-name `self::REDIRECTS`, does not follow any #REDIRECTs on the translation page.
+	 *
+	 * @return ?string Empty string for nonexistent translations, null for invalid theme IDs.
 	 */
 	public static function lookup( string $id, string $lang ): ?string {
 		$group = self::getGroup();
@@ -204,6 +206,12 @@ class Title {
 			$collections[$lang] = $group->initCollection( $lang );
 			$collections[$lang]->loadTranslations();
 		}
-		return $collections[$lang][$id]->translation();
+
+		// Nonexistent themes really shouldn't raise an exception that prevents an entire page
+		// from rendering.
+		if ( !isset( $collections[$lang][$id] ) ) {
+			return null;
+		}
+		return $collections[$lang][$id]->translation() ?? "";
 	}
 };
