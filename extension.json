@@ -41,6 +41,11 @@
 	"Hooks": {
 		"ParserFirstCallInit": "TouhouThemeDB\\Hooks::onParserFirstCallInit"
 	},
+	"MessagesDirs": {
+		"TouhouThemeDB": [
+			"i18n"
+		]
+	},
 	"callback": "TouhouThemeDB\\Hooks::onRegistration",
 	"manifest_version": 2
 }

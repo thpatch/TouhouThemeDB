@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nmlgc"
+		]
+	},
+	"apihelp-query+tdbrelations-summary": "Liefert die Arrangement- und Duplikat-Beziehungen zwischen sämtlichen kanonischen Touhou-Musikstücken.",
+	"apihelp-query+tdbrelations-extended-description": "Das zurückgegebene Objekt verwendet Theme-IDs (<code>\"&lt;Release-ID&gt;_&lt;zweistellige Tracknummer&gt;\"</code>) als Keys. Deren Werte fassen die folgenden Informationen zu jedem Arrangement in einem zwei-elementigen Array zusammen:<ol><li></li>Den Typ der Beziehung: <code>\"a\"</code> für Arrangements, <code>\"d\"</code> für Duplikate</li><li>Ein Array mit den Theme-IDs der Ursprungs-Stücke</li></ol>",
+	"apihelp-query+tdbrelations-example-sane": "Liefert die Daten ohne MediaWikis doofen <code>\"batchcomplete\"</code>-Wert.",
+
+	"apihelp-query+tdbtitles-summary": "Liefert alle vorhandenen Titel von Touhou-Musikstücken in einer bestimmten Sprache.",
+	"apihelp-query+tdbtitles-extended-description": "Das zurückgegebene Objekt verwendet sprach-spezifische Theme-IDs (<code>\"&lt;Release-ID&gt;_&lt;zweistellige Tracknummer&gt;/<var>language</var>\"</code>) als Keys. Deren Werte sind entweder<ul><li>Strings, für den Titel eines Stücks</li><li>oder, bei Stücken mit duplizierten Titeln, ein-elementige Arrays mit der sprach-spezifischen Theme-ID des Ursprungs-Titels. Die so referenzierte ID ist dabei immer Teil des zurückgelieferten Liste.</li></ul>",
+	"apihelp-query+tdbtitles-param-language": "MediaWiki-Sprachcode.",
+	"apihelp-query+tdbtitles-example-ja": "Liefert die originalen japanischen Musiktitel der gesamten Serie, in einem kompakten JSON-Format mit rohem UTF-8, und ohne MediaWikis doofen <code>\"batchcomplete\"</code>-Wert.",
+	"apihelp-query+tdbtitles-example-eo": "Liefert alle bestehenden Musiktitel-Übersetzungen auf Esperanto über die gesamte Serie, in einem kompakten JSON-Format mit rohem UTF-8, und ohne MediaWikis doofen <code>\"batchcomplete\"</code>-Wert."
+}

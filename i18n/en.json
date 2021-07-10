@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nmlgc"
+		]
+	},
+	"apihelp-query+tdbrelations-summary": "Lists all arrangement and duplicate relations between canon Touhou music themes.",
+	"apihelp-query+tdbrelations-extended-description": "The returned object uses theme IDs (<code>\"&lt;release ID&gt;_&lt;two-digit track number within release&gt;\"</code>) as its keys. Their values bundle the following information for each arrangement or duplicate in a two-element array:<ol><li></li>The relation type: <code>\"a\"</code> for arrangements, <code>\"d\"</code> for duplicates</li><li>An array of source theme IDs</li></ol>",
+	"apihelp-query+tdbrelations-example-sane": "Get the data without MediaWiki's dumb <code>\"batchcomplete\"</code> value.",
+
+	"apihelp-query+tdbtitles-summary": "Lists all existing title translations for Touhou music themes in a given language.",
+	"apihelp-query+tdbtitles-extended-description": "The returned object uses language-specific theme IDs (<code>\"&lt;release ID&gt;_&lt;two-digit track number within release&gt;/<var>language</var>\"</code>) as its keys. Their values are either<ul><li>strings, for the title of a theme</li><li>or, for themes with duplicated titles, one-element arrays with the language-specific theme ID of the original title. This referenced ID is always part of the returned list.</li></ul>",
+	"apihelp-query+tdbtitles-param-language": "MediaWiki language code.",
+	"apihelp-query+tdbtitles-example-ja": "Get the original Japanese theme titles of the entire series, in a compact raw UTF-8 JSON format, and without MediaWiki's dumb <code>\"batchcomplete\"</code> value.",
+	"apihelp-query+tdbtitles-example-eo": "Get all existing theme title translations into Esperanto across the entire series, in a compact raw UTF-8 JSON format, and without MediaWiki's dumb <code>\"batchcomplete\"</code> value."
+}

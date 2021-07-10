@@ -40,4 +40,11 @@ class TDBTitles extends ApiQueryBase {
 			$result->addValue( null, $key, $value );
 		}
 	}
+
+	protected function getExamplesMessages(): array {
+		return [
+			'action=query&list=tdbtitles&language=ja&format=json&utf8&rawcontinue' => 'apihelp-query+tdbtitles-example-ja',
+			'action=query&list=tdbtitles&language=eo&format=json&utf8&rawcontinue' => 'apihelp-query+tdbtitles-example-eo'
+		];
+	}
 };
