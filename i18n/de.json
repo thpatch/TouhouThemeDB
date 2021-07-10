@@ -4,6 +4,8 @@
 			"Nmlgc"
 		]
 	},
+	"tdb-desc": "Stellt Daten über sämtliche kanonischen Touhou-Musikstücke zur Verfügung",
+
 	"apihelp-query+tdbrelations-summary": "Liefert die Arrangement- und Duplikat-Beziehungen zwischen sämtlichen kanonischen Touhou-Musikstücken.",
 	"apihelp-query+tdbrelations-extended-description": "Das zurückgegebene Objekt verwendet Theme-IDs (<code>\"&lt;Release-ID&gt;_&lt;zweistellige Tracknummer&gt;\"</code>) als Keys. Deren Werte fassen die folgenden Informationen zu jedem Arrangement in einem zwei-elementigen Array zusammen:<ol><li></li>Den Typ der Beziehung: <code>\"a\"</code> für Arrangements, <code>\"d\"</code> für Duplikate</li><li>Ein Array mit den Theme-IDs der Ursprungs-Stücke</li></ol>",
 	"apihelp-query+tdbrelations-example-sane": "Liefert die Daten ohne MediaWikis doofen <code>\"batchcomplete\"</code>-Wert.",

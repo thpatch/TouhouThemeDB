@@ -2,6 +2,7 @@
 	"name": "TouhouThemeDB",
 	"author": "Nmlgc",
 	"url": "https://github.com/thpatch/TouhouThemeDB",
+	"descriptionmsg": "tdb-desc",
 	"type": "other",
 	"license-name": "Unlicense",
 	"requires": {
