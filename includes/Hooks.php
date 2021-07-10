@@ -32,7 +32,7 @@ class Hooks {
 
 		$components = explode ( '/', $param1 );
 		if ( count($components) == 2 ) {
-			$ret = Title::lookup( $components[0], $components[1] )
+			$ret = Title::lookupEditLink( $components[0], $components[1] );
 			if ( $ret !== null ) {
 				return $ret;
 			}
