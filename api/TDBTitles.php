@@ -25,7 +25,7 @@ class TDBTitles extends ApiQueryBase {
 		foreach ( $collection as $id => $value ) {
 			$trans = $value->translation();
 			if ( $trans ) {
-				$ret[$id] = $trans;
+				$ret[$id] = Title::sanitize( $trans );
 			}
 		}
 		foreach ( Title::REDIRECTS as $from => &$to ) {

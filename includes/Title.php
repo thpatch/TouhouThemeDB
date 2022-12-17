@@ -208,6 +208,21 @@ class Title {
 	}
 
 	/**
+	 * Common theme title sanitizer for general display and APIs.
+	 *
+	 * @return string Sanitized theme title. `null` will sanitize to "".
+	 */
+	public static function sanitize( ?string $title ): string {
+		// Leading whitespace (MediaWiki already trims trailing whitespace)
+		$title = ltrim( $title ?? "" );
+
+		// HTML comments
+		$title = preg_replace( '/\s*<!--(.*?)-->\s*/s', '', $title );
+
+		return $title;
+	}
+
+	/**
 	 * Looks up the translation for the theme with the given ID in the given language. Follows the
 	 * same-name `self::REDIRECTS`, does not follow any #REDIRECTs on the translation page.
 	 *
@@ -235,7 +250,7 @@ class Title {
 		if ( !isset( $collections[$lang][$id] ) ) {
 			return null;
 		}
-		return $collections[$lang][$id]->translation() ?? "";
+		return self::sanitize( $collections[$lang][$id]->translation() );
 	}
 
 	/**
