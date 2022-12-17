@@ -6,7 +6,7 @@
 	"type": "other",
 	"license-name": "Unlicense",
 	"requires": {
-		"MediaWiki": ">= 1.35.0",
+		"MediaWiki": ">= 1.37.0",
 		"extensions": {
 			"Translate": "*"
 		}
@@ -40,6 +40,7 @@
 		"TouhouThemeDBMagic": "TouhouThemeDB.i18n.magic.php"
 	},
 	"Hooks": {
+		"ParserPreSaveTransformComplete": "TouhouThemeDB\\Hooks::onParserPreSaveTransformComplete",
 		"ParserFirstCallInit": "TouhouThemeDB\\Hooks::onParserFirstCallInit"
 	},
 	"MessagesDirs": {

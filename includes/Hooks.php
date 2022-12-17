@@ -16,6 +16,12 @@ class Hooks {
 		$wgTranslateMessageNamespaces[] = NS_THEMEDB;
 	}
 
+	public static function onParserPreSaveTransformComplete( Parser $parser, string &$text ) {
+		if ( $parser->getPage()->getNamespace() === NS_THEMEDB ) {
+			$text = ltrim( $text );
+		}
+	}
+
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setFunctionHook(
 			self::MAGIC_WORD_ID, [ self::class, 'onTDB' ], Parser::SFH_NO_HASH
