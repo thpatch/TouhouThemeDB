@@ -25,13 +25,12 @@ class TDBTitles extends ApiQueryBase {
 		foreach ( $collection as $id => $value ) {
 			$trans = $value->translation();
 			if ( $trans ) {
-				$ret["$id/$language"] = $trans;
+				$ret[$id] = $trans;
 			}
 		}
 		foreach ( Title::REDIRECTS as $from => &$to ) {
-			$dst = "$to/$language";
-			if ( isset( $ret[$dst] ) ) {
-				$ret["$from/$language"] = array( $dst );
+			if ( isset( $ret[$to] ) ) {
+				$ret[$from] = array( $to );
 			}
 		}
 
