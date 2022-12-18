@@ -2,6 +2,7 @@
 
 namespace TouhouThemeDB;
 
+use MediaWiki\MediaWikiServices;
 use MessageGroup, MessageGroups, SpecialPage;
 
 class Title {
@@ -256,10 +257,10 @@ class Title {
 	/**
 	 * Combines a lookup with an edit link. Falls back on regular lookup if ($lang === 'ja').
 	 *
-	 * @return ?string Edit link, or null for invalid theme IDs.
+	 * @return ?array Parser hook array with an HTML link, or null for invalid theme IDs.
 	 */
-	public static function lookupEditLink( string $id, string $lang ): ?string {
-		static $translatePage = array();
+	public static function lookupEditLink( string $id, string $lang ): ?array {
+		static $specialTranslate = null;
 
 		$title = self::lookup( $id, $lang );
 		if ( $title === null ) {
@@ -267,22 +268,29 @@ class Title {
 		}
 
 		if ( $lang === 'ja' ) {
-			return $title;
+			return [ $title ];
 		}
 
 		if ( isset( self::REDIRECTS[$id] ) ) {
 			$id = self::REDIRECTS[$id];
 		}
 
-		// See TranslatablePage::getTranslationUrl()
-		$translatePage[$lang] ??= SpecialPage::getTitleFor( 'Translate' )->getFullURL( [
+		$specialTranslate ??= SpecialPage::getTitleFor( 'Translate' );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$target = $specialTranslate->createFragmentTarget( $id );
+		$attribs = [
+			'class' => 'external', // looks nicer
+			'title' => "$id",
+		];
+		if ( $title === '' ) {
+			$title = "\u{200B}"; // just to get rid of the automatically generated number
+		}
+		$link = $linkRenderer->makeKnownLink( $target, $title, $attribs, [
+			// See TranslatablePage::getTranslationUrl()
 			'group' => self::GROUP_ID,
 			'filter' => '', // yup, defaults to '!translated' otherwise
 			'language' => $lang,
 		] );
-		if ( $title === '' ) {
-			$title = "\u{200B}"; // just to get rid of the automatically generated number
-		}
-		return "[{$translatePage[$lang]}#$id $title]";
+		return [ $link, 'isHTML' => true ];
 	}
 };
