@@ -261,6 +261,7 @@ class Title {
 	 */
 	public static function lookupEditLink( string $id, string $lang ): ?array {
 		static $specialTranslate = null;
+		static $untranslatedString = array();
 
 		$title = self::lookup( $id, $lang );
 		if ( $title === null ) {
@@ -279,11 +280,13 @@ class Title {
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$target = $specialTranslate->createFragmentTarget( $id );
 		$attribs = [
-			'class' => 'external', // looks nicer
+			'class' => 'tdb-theme',
 			'title' => "$id",
 		];
 		if ( $title === '' ) {
-			$title = "\u{200B}"; // just to get rid of the automatically generated number
+			$untranslatedString[$lang] ??= wfMessage( 'tdb-untranslated' )->inLanguage( $lang );
+			$title = $untranslatedString[$lang];
+			$attribs['class'] .= ' new';
 		}
 		$link = $linkRenderer->makeKnownLink( $target, $title, $attribs, [
 			// See TranslatablePage::getTranslationUrl()
