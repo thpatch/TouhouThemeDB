@@ -203,9 +203,9 @@ class Title {
 		"th185_10" => "th18_17",
 		"mcd_095_02" => "th16_08",
 		"mcd_095_03" => "th18_13",
-		"th19_04" => "th12_02",
-		"th19_05" => "th15_02",
-		"th19_06" => "th16_07",
+		"th19_04" => "th16_07",
+		"th19_05" => "th12_02",
+		"th19_06" => "th15_02",
 	);
 
 	public static function getGroup(): MessageGroup {
